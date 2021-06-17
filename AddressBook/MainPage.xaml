@@ -9,7 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <StackPanel Orientation="Horizontal">
         <Button x:Name="ADD" Content="ADD" VerticalAlignment="Top"></Button>
-
+        <TextBlock Text="Name" Margin="10,10,0,0"></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
