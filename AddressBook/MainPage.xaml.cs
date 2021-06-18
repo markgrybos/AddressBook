@@ -26,5 +26,10 @@ namespace AddressBook
         {
             this.InitializeComponent();
         }
+
+        private void ADD_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
