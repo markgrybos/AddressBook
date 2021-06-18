@@ -10,15 +10,60 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button x:Name="ADD" Content="ADD" VerticalAlignment="Top"></Button>
-            <TextBlock Text="Name" Margin="10,10,0,0"></TextBlock>
-        </StackPanel>
-        <Button Grid.Row="1" Content="Button" />
-        <Button Grid.Row="2" Content="New Button"/>
+        <RelativePanel Grid.Row="0">
+            <Button Name="HamburgerButton"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    Content="&#xE700;"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="28"
+                    Height="50"
+                    Width="50"/>
+            <Button Name="AddButton"
+                    RelativePanel.RightOf="HamburgerButton"
+                    Content="&#xE710;"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="28"
+                    Height="50"
+                    Width="50"/>
+        </RelativePanel>
+        <SplitView Grid.Row="1"
+                   Name="ContactsByLetters"
+                   DisplayMode="CompactInline"
+                   CompactPaneLength="50"
+                   OpenPaneLength="450">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Contacts"
+                               Name="ContactsHeader"
+                               FontWeight="Bold"
+                               FontSize="36"
+                               FontFamily="Calibri"
+                               Margin="150,10,0,0"/>
+                    <ListView Name="ListOfLettersView"
+                              IsItemClickEnabled="True"
+                              ItemClick="ListOfLettersView_ItemClick"
+                              ItemsSource=""
+                              SelectionMode="Single"
+                              Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text=""/>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </SplitView.Pane>
+            
+        </SplitView>
     </Grid>
+
 </Page>

@@ -26,5 +26,10 @@ namespace AddressBook
         {
             this.InitializeComponent();
         }
+
+        private void ListOfLettersView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
