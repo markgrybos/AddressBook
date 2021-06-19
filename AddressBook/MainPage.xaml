@@ -20,7 +20,8 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
                     Height="50"
-                    Width="50"/>
+                    Width="50"
+                    Click="HamburgerButton_Click"/>
             <Button Name="AddButton"
                     RelativePanel.RightOf="HamburgerButton"
                     Content="&#xE710;"
@@ -30,7 +31,7 @@
                     Width="50"/>
         </RelativePanel>
         <SplitView Grid.Row="1"
-                   Name="ContactsByLetters"
+                   Name="MySplitView"
                    DisplayMode="CompactInline"
                    CompactPaneLength="50"
                    OpenPaneLength="450">
