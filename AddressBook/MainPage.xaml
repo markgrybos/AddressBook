@@ -27,8 +27,10 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
                     Height="50"
-                    Width="50"/>
+                    Width="50"
+                    Click="AddButton_Click"/>
         </RelativePanel>
+        
         <SplitView Grid.Row="1"
                    Name="ContactsByLetters"
                    DisplayMode="CompactInline"
