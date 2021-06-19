@@ -27,7 +27,7 @@ namespace AddressBook
             this.InitializeComponent();
         }
 
-        private void ADD_Click(object sender, RoutedEventArgs e)
+        private void ListOfLettersView_ItemClick(object sender, ItemClickEventArgs e)
         {
 
         }
