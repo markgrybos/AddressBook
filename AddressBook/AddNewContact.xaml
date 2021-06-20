@@ -13,8 +13,7 @@
             <TextBox x:Name="NewName" Height="35"  PlaceholderText="Name" Width="515" ></TextBox>
             <TextBox x:Name="NewPhoneNumber" PlaceholderText="Phone Number" Width="514"></TextBox>
             <TextBox x:Name="NewEmailId" PlaceholderText="Email ID"  Width="514"></TextBox>
-            <TextBox AutomationProperties.Name="multi-line TextBox" PlaceholderText="Address"
-              TextWrapping="Wrap" Width="514"/>
+            <TextBox Name="NewAddress" PlaceholderText="Address" Width="514"></TextBox>
 
             <Grid  Width="514" ColumnSpacing="80"  >
                 <Grid.RowDefinitions>
