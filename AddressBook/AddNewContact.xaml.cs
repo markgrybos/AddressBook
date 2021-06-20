@@ -27,11 +27,11 @@ namespace AddressBook
     public sealed partial class AddNewContact : Page
     {
         private XmlSerializer XMLSerial;
-        private ObservableCollection<Contact> contactList;
+        private List<Contact> contactList;
         public AddNewContact()
         {
             InitializeComponent();
-            contactList = new ObservableCollection<Contact>();
+            contactList = new List<Contact>();
             XMLSerial = new XmlSerializer(typeof(List<Contact>));
         }
 
@@ -43,12 +43,19 @@ namespace AddressBook
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             Contact contactToAdd = new Contact();
-            contactToAdd.Name = NewName.Text;
+            contactToAdd.FirstName = NewFirstName.Text;
+            contactToAdd.LastName = NewLastName.Text;
             contactToAdd.EmailID = NewEmailId.Text;
             contactToAdd.PhoneNo = NewPhoneNumber.Text;
             contactToAdd.Address = NewAddress.Text;
 
             ContactManager.AddContact(contactList, XMLSerial, contactToAdd);
+
+            NewFirstName.Text = String.Empty;
+            NewLastName.Text = String.Empty;
+            NewPhoneNumber.Text = String.Empty;
+            NewEmailId.Text = String.Empty;
+            NewAddress.Text = String.Empty;
 
             //var newcontact = new Contact(NewName.ToString(), NewPhoneNumber.ToString(), NewEmailId.ToString(),NewAddress.ToString());
 
@@ -63,5 +70,6 @@ namespace AddressBook
             //writer.Serialize(file, newcontact);
             //file.Close();
         }
+
     }
 }
