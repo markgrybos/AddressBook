@@ -39,7 +39,7 @@ namespace AddressBook
             System.Xml.Serialization.XmlSerializer writer =
             new System.Xml.Serialization.XmlSerializer(typeof(Contact));
 
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\iram\\SerializationOverview.xml";
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\data.xml";
             System.IO.FileStream file = System.IO.File.Create(path);
 
             writer.Serialize(file, newcontact);
