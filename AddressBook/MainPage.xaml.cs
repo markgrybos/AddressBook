@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AddressBook.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml.Serialization;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +24,27 @@ namespace AddressBook
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        XmlSerializer myXmlSerializer;
+        List<Contact> contacts;
+        FileStream myXmlFile;
         public MainPage()
         {
             this.InitializeComponent();
+            contacts = new List<Contact>();
+            myXmlSerializer = new XmlSerializer(typeof(List<Contact>));
+            myXmlFile = new FileStream("Assets/Contacts.Xml",FileMode.Open,FileAccess.Write);
+            Contact c1 = new Contact();
+            c1.Name = "Andy";
+            c1.Phone = "9346923";
+            c1.Email = "skjdfks";
+            c1.Address = "khfksf";
+            contacts.Add(c1);
+            myXmlSerializer.Serialize(myXmlFile,contacts);
+           // myXmlFile = new FileStream("Assets/Contacts.Xml",FileMode.Open,FileAccess.Read);
+            //contacts = (List<Contact>)myXmlSerializer.Deserialize(myXmlFile);
+            
+
+
         }
 
         private void ListOfLettersView_ItemClick(object sender, ItemClickEventArgs e)
