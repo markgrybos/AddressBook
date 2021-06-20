@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml;
+using System.Xml.Serialization;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,9 +26,13 @@ namespace AddressBook
     /// </summary>
     public sealed partial class AddNewContact : Page
     {
+        private XmlSerializer XMLSerial;
+        private ObservableCollection<Contact> contactList;
         public AddNewContact()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            contactList = new ObservableCollection<Contact>();
+            XMLSerial = new XmlSerializer(typeof(List<Contact>));
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -35,15 +42,26 @@ namespace AddressBook
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            var newcontact = new Contact(NewName.ToString(), NewPhoneNumber.ToString(), NewEmailId.ToString(),NewAddress.ToString());
-            System.Xml.Serialization.XmlSerializer writer =
-            new System.Xml.Serialization.XmlSerializer(typeof(Contact));
+            Contact contactToAdd = new Contact();
+            contactToAdd.Name = NewName.Text;
+            contactToAdd.EmailID = NewEmailId.Text;
+            contactToAdd.PhoneNo = NewPhoneNumber.Text;
+            contactToAdd.Address = NewAddress.Text;
 
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\data.xml";
-            System.IO.FileStream file = System.IO.File.Create(path);
+            ContactManager.AddContact(contactList, XMLSerial, contactToAdd);
 
-            writer.Serialize(file, newcontact);
-            file.Close();
+            //var newcontact = new Contact(NewName.ToString(), NewPhoneNumber.ToString(), NewEmailId.ToString(),NewAddress.ToString());
+
+            //var contact = new Contact(NewName.Text, NewPhoneNumber.Text, NewEmailId.Text, NewAddress.Text);
+
+            //System.Xml.Serialization.XmlSerializer writer =
+            //new System.Xml.Serialization.XmlSerializer(typeof(Contact));
+
+            //var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\data.xml";
+            //System.IO.FileStream file = System.IO.File.Create(path);
+
+            //writer.Serialize(file, newcontact);
+            //file.Close();
         }
     }
 }
