@@ -8,7 +8,8 @@ namespace AddressBook.Model
 {
     public class Contact
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string EmailID { get; set; }
 
         public string PhoneNo { get; set; }

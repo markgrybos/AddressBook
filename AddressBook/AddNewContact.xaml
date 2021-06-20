@@ -9,11 +9,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel x:Name="MyStackPanel" Orientation="Vertical"  Margin="10,4,20,56" Grid.ColumnSpan="2" >
-            <TextBox x:Name="NewName" Height="35"  PlaceholderText="Name" Width="515" ></TextBox>
-            <TextBox x:Name="NewPhoneNumber" PlaceholderText="Phone Number" Width="514"></TextBox>
-            <TextBox x:Name="NewEmailId" PlaceholderText="Email ID"  Width="514"></TextBox>
-            <TextBox x:Name="NewAddress" PlaceholderText="Address" Width="514"></TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "2*"/>
+            <RowDefinition Height = "4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="MyStackPanel" Orientation="Vertical"  Margin="10,4,20,56" Grid.ColumnSpan="2" Grid.Row="1">
+            <TextBox x:Name="NewFirstName" Height="35"  PlaceholderText="First Name" Width="515" ></TextBox>
+            <TextBox x:Name="NewLastName" Height="35"  PlaceholderText="Last Name" Width="515" ></TextBox>
+            <TextBox x:Name="NewPhoneNumber" PlaceholderText="Phone Number" Width="515"></TextBox>
+            <TextBox x:Name="NewEmailId" PlaceholderText="Email ID"  Width="515"></TextBox>
+            <TextBox x:Name="NewAddress" PlaceholderText="Address" Width="515"></TextBox>
 
             <Grid  Width="514" ColumnSpacing="80"  >
                 <Grid.RowDefinitions>
