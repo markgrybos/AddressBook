@@ -15,11 +15,23 @@ namespace AddressBook.Model
         public static void AddContact(List<Contact> contact, XmlSerializer xml, Contact contactToAdd)
         {
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
-            //var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\data.xml";
-            FileStream file = new FileStream(path, FileMode.Create, FileAccess.Write);
+            string xmlexist = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))}\\contacts.xml";
+            FileStream contactFile;
+            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            if (!File.Exists(xmlexist))
+            {
+                contactFile = new FileStream(path, FileMode.Create, FileAccess.Write);
+            }
+            else 
+            {
+                contactFile = new FileStream(path, FileMode.Append, FileAccess.Write);
+                
+            }
+            
             contact.Add(contactToAdd);
-            xml.Serialize(file, contact);
-            file.Close();
+            xml.Serialize(contactFile, contact, ns);
+            contactFile.Close();
         }
     }
 }
