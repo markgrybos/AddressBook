@@ -35,8 +35,13 @@ namespace AddressBook
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
-            ContactsByLetters.IsPaneOpen = !ContactsByLetters.IsPaneOpen;
+            ContactsSplitview.IsPaneOpen = !ContactsSplitview.IsPaneOpen;
             this.Frame.Navigate(typeof(AddNewContact));
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContactsSplitview.IsPaneOpen = !ContactsSplitview.IsPaneOpen;
         }
     }
 }

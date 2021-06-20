@@ -8158,7 +8158,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\iram\\.nuget\\packages\\": {},
+    "C:\\Users\\Mark\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
@@ -8166,11 +8166,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iram\\source\\repos\\KalAcademy_projects\\AddressBook\\AddressBook.csproj",
+      "projectUniqueName": "C:\\Users\\Mark\\source\\repos\\AddressBook\\AddressBook\\AddressBook.csproj",
       "projectName": "AddressBook",
-      "projectPath": "C:\\Users\\iram\\source\\repos\\KalAcademy_projects\\AddressBook\\AddressBook.csproj",
-      "packagesPath": "C:\\Users\\iram\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iram\\source\\repos\\KalAcademy_projects\\AddressBook\\obj\\",
+      "projectPath": "C:\\Users\\Mark\\source\\repos\\AddressBook\\AddressBook\\AddressBook.csproj",
+      "packagesPath": "C:\\Users\\Mark\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mark\\source\\repos\\AddressBook\\AddressBook\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -8179,7 +8179,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\iram\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mark\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
