@@ -17,20 +17,21 @@ namespace AddressBook.Model
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
             string xmlexist = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))}\\contacts.xml";
             FileStream contactFile;
-            XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
             if (!File.Exists(xmlexist))
             {
                 contactFile = new FileStream(path, FileMode.Create, FileAccess.Write);
+                contactFile.Close();
             }
             else 
             {
-                contactFile = new FileStream(path, FileMode.Append, FileAccess.Write);
+                contactFile = new FileStream(path, FileMode.Open, FileAccess.Read);
+                contact = (List<Contact>)xml.Deserialize(contactFile);
+                contactFile.Close();
                 
             }
-            
+            contactFile = new FileStream(path, FileMode.Open, FileAccess.Write);
             contact.Add(contactToAdd);
-            xml.Serialize(contactFile, contact, ns);
+            xml.Serialize(contactFile, contact);
             contactFile.Close();
         }
     }
