@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AddressBook.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +24,12 @@ namespace AddressBook
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ObservableCollection<Contact> allcontacts;
         public MainPage()
         {
             this.InitializeComponent();
+            allcontacts = new ObservableCollection<Contact>();
+            ContactManager.ReadAllContacts(allcontacts);
         }
 
         private void ListOfLettersView_ItemClick(object sender, ItemClickEventArgs e)
@@ -41,7 +46,7 @@ namespace AddressBook
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
-            ContactsSplitview.IsPaneOpen = !ContactsSplitview.IsPaneOpen;
+           // ContactsSplitview.IsPaneOpen = !ContactsSplitview.IsPaneOpen;
         }
     }
 }
