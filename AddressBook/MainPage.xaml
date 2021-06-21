@@ -5,6 +5,7 @@
     xmlns:local="using:AddressBook"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:AddressBook.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -34,7 +35,7 @@
         <SplitView Grid.Row="1"
                    Name="ContactsSplitview"
                    DisplayMode="CompactInline"
-                   CompactPaneLength="50"
+                   CompactPaneLength="350"
                    OpenPaneLength="450">
             <SplitView.Pane>
                 <Grid>
@@ -52,12 +53,14 @@
                     <ListView Name="ListOfLettersView"
                               IsItemClickEnabled="True"
                               ItemClick="ListOfLettersView_ItemClick"
-                              ItemsSource=""
+                              ItemsSource="{x:Bind allcontacts}"
                               SelectionMode="Single"
                               Grid.Row="1">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text=""/>
+                            <DataTemplate x:DataType="model:Contact">
+                                <TextBlock Text="{x:Bind FirstName}"/>
+                             
+                             
 
                             </DataTemplate>
                         </ListView.ItemTemplate>

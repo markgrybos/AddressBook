@@ -34,5 +34,22 @@ namespace AddressBook.Model
             xml.Serialize(contactFile, contact);
             contactFile.Close();
         }
+
+        public static void ReadAllContacts(ObservableCollection<Contact> allcontacts)
+        {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
+            string xmlexist = $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))}\\contacts.xml";
+            FileStream contactFile;
+            XmlSerializer xml = new XmlSerializer(typeof(List<Contact>));
+            List<Contact> contactlist = new List<Contact>();
+            if (File.Exists(xmlexist))
+            {
+                contactFile = new FileStream(path, FileMode.Open, FileAccess.Read);
+                contactlist = (List<Contact>)xml.Deserialize(contactFile);
+
+            }
+            allcontacts.Clear();
+            contactlist.ForEach(contact => allcontacts.Add(contact));
+        }
     }
 }
