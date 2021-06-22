@@ -14,25 +14,73 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <RelativePanel Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <!--<RelativePanel Grid.Row="1"
+                       Grid.Column="1">
             <Button Name="HamburgerButton"
                     RelativePanel.AlignLeftWithPanel="True"
                     Content="&#xE700;"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
                     Height="50"
-                    Width="50"
-                    Click="HamburgerButton_Click"/>
-            <Button Name="AddButton"
-                    RelativePanel.RightOf="HamburgerButton"
+                    Width="50"/>
+        <Button Name="AddButton"
+                    RelativePanel.AlignRightWithPanel="True"
                     Content="&#xE710;"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
                     Height="50"
                     Width="50"
-                    Click="AddButton_Click"/>
-        </RelativePanel>
-        <SplitView Grid.Row="1"
+                    Click="AddButton_Click"
+                    Background="CornflowerBlue"
+                    Foreground="White"
+                    Margin="0,15,15,0"/>
+        </RelativePanel>-->
+        <ListView x:Name="ContactList"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind allcontacts}"
+                              SelectionMode="Single"
+                              Grid.Row="1"
+                              Grid.Column="0"
+                              Background="CornflowerBlue"
+                              BorderThickness="1"
+                              Margin="5,5,0,5"
+                              BorderBrush="White">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Contact">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"
+                                   Foreground="White">
+                            <Run Text="{x:Bind FirstName}"></Run>
+                            <Run Text="{x:Bind LastName}"></Run>
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    Background="LightCyan">
+
+            </StackPanel>
+        </Grid>
+        
+        <!--<SplitView Grid.Row="1"
                    Name="ContactsSplitview"
                    DisplayMode="CompactInline"
                    CompactPaneLength="350"
@@ -68,7 +116,8 @@
                 </Grid>
             </SplitView.Pane>
             
-        </SplitView>
+        </SplitView> -->
+        <TimePicker Margin="1258,-103,0,0" VerticalAlignment="Top"/>
     </Grid>
 
 </Page>
