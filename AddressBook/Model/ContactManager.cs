@@ -46,10 +46,12 @@ namespace AddressBook.Model
             {
                 contactFile = new FileStream(path, FileMode.Open, FileAccess.Read);
                 contactlist = (List<Contact>)xml.Deserialize(contactFile);
+                contactFile.Close();
 
             }
             allcontacts.Clear();
             contactlist.ForEach(contact => allcontacts.Add(contact));
+            
         }
     }
 }

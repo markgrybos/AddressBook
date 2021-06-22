@@ -18,17 +18,17 @@ namespace AddressBook.Model
 
         // public Contact() { }
 
-        public Contact() { 
+        public Contact() {
             // Removed required properties in the Constructor as it was breaking 
             // app from running the Add Contact page and XML Serializer does it 
             // a different way 
             // ~ Mark
 
-            /* Name = name;
-            PhoneNo = phone;
-            EmailID = email;
-            Address = address; */
-        
+            /*FirstName = "";
+            LastName = "";
+            PhoneNo ="";
+            EmailID = "";
+            Address = "";        */
 
         }
 
