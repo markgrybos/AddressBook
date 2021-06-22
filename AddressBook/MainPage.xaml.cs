@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,26 +29,31 @@ namespace AddressBook
         private ObservableCollection<Contact> allcontacts;
         public MainPage()
         {
-            this.InitializeComponent();
             allcontacts = new ObservableCollection<Contact>();
+            allcontacts.OrderBy(x => x.LastName);
             ContactManager.ReadAllContacts(allcontacts);
-        }
-
-        private void ListOfLettersView_ItemClick(object sender, ItemClickEventArgs e)
-        {
+            DataContext = allcontacts;
+            this.InitializeComponent();
 
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
-            ContactsSplitview.IsPaneOpen = !ContactsSplitview.IsPaneOpen;
             this.Frame.Navigate(typeof(AddNewContact));
         }
 
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        private void ContactList_ItemClick(object sender, ItemClickEventArgs e)
         {
-           // ContactsSplitview.IsPaneOpen = !ContactsSplitview.IsPaneOpen;
+            var contact = (Contact)e.ClickedItem;
+            var selected = ContactManager.GetContact(contact);
+            if (SelectedContactName.Visibility == Visibility.Visible)
+            {
+                UnselectedContact.Visibility = Visibility.Collapsed;
+            }
+            else if (SelectedContactName.Visibility != Visibility.Visible)
+            {
+                UnselectedContact.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -50,8 +50,28 @@ namespace AddressBook.Model
 
             }
             allcontacts.Clear();
+            contactlist.Sort((x, y) => string.Compare(x.LastName, y.LastName));
             contactlist.ForEach(contact => allcontacts.Add(contact));
-            
+
+
         }
+
+        public static Contact GetContact(Contact selectedContact)
+        {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
+            FileStream contactFile;
+            XmlSerializer xml = new XmlSerializer(typeof(List<Contact>));
+            List<Contact> contactlist = new List<Contact>();
+            contactFile = new FileStream(path, FileMode.Open, FileAccess.Read);
+            contactlist = (List<Contact>)xml.Deserialize(contactFile);
+            contactFile.Close();
+
+            var lookForContact = contactlist.First(f => f.FirstName == selectedContact.FirstName && f.LastName == selectedContact.LastName);
+
+            return (Contact)lookForContact;
+
+        }
+
+
     }
 }
