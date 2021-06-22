@@ -26,13 +26,15 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="257"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="CancelButton"  Content="CANCEL" Width="100" Click="CancelButton_Click" HorizontalAlignment="Center" Grid.Row="1" >
                 </Button>
-                <Button x:Name="SaveButton"  Content="SAVE" Width="100" Click="SaveButton_Click" Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Center">
+                <Button x:Name="SaveButton"  Content="SAVE" Width="100" Click="SaveButton_Click" Grid.Row="1"  Grid.Column="1" />
+                <Button x:Name="ClearButton"  Content="CLEAR" Width="100" Click="ClearButton_Click" Grid.Row="1"  Grid.Column="2">                   
 
                 </Button>
             </Grid>
