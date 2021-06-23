@@ -57,11 +57,12 @@ namespace AddressBook
             else
             {
                 Contact contactToAdd = new Contact();
-                contactToAdd.FirstName = NewFirstName.Text;
-                contactToAdd.LastName = NewLastName.Text;
+                contactToAdd.FirstName = TCase(NewFirstName.Text);
+                contactToAdd.LastName = TCase(NewLastName.Text);
                 contactToAdd.EmailID = NewEmailId.Text;
                 contactToAdd.PhoneNo = NewPhoneNumber.Text;
                 contactToAdd.Address = NewAddress.Text;
+                contactToAdd.FullName = $"{contactToAdd.FirstName} {contactToAdd.LastName}";
 
                 ContactManager.AddContact(contactList, XMLSerial, contactToAdd);
 
@@ -98,6 +99,34 @@ namespace AddressBook
             NewEmailId.Text = String.Empty;
             NewAddress.Text = String.Empty;
 
+        }
+
+        public static String TCase(String strParam)
+        {
+            String strTitleCase = strParam.Substring(0, 1).ToUpper();
+            strParam = strParam.Substring(1).ToLower();
+            String strPrev = "";
+
+
+            for (int iIndex = 0; iIndex < strParam.Length; iIndex++)
+            {
+                if (iIndex > 1)
+                {
+                    strPrev = strParam.Substring(iIndex - 1, 1);
+                }
+                if (strPrev.Equals(" ") ||
+                    strPrev.Equals("\t") ||
+                    strPrev.Equals("\n") ||
+                    strPrev.Equals("."))
+                {
+                    strTitleCase += strParam.Substring(iIndex, 1).ToUpper();
+                }
+                else
+                {
+                    strTitleCase += strParam.Substring(iIndex, 1);
+                }
+            }
+            return strTitleCase;
         }
     }
 }
