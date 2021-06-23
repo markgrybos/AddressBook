@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,7 +29,10 @@ namespace AddressBook
     {
         private ObservableCollection<Contact> allcontacts;
         public MainPage()
+
         {
+          
+
             allcontacts = new ObservableCollection<Contact>();
             allcontacts.OrderBy(x => x.LastName);
             ContactManager.ReadAllContacts(allcontacts);
@@ -54,6 +58,27 @@ namespace AddressBook
             {
                 UnselectedContact.Visibility = Visibility.Visible;
             }
+        }
+
+        private void DeleteSelectedItem_Click(object sender, RoutedEventArgs e)
+        {
+            //  var dialog = new MessageDialog("Do you want to delete");
+            // await dialog.ShowAsync();
+            var firstname = SelectedContactName.Text;
+            ContactManager.DeleteContact(firstname);
+            this.InitializeComponent();
+            // var lastname = SelectedContactName.;
+
+
+
+
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+
         }
     }
 }

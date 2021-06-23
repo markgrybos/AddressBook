@@ -15,8 +15,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
         <!--<RelativePanel Grid.Row="1"
                        Grid.Column="1">
@@ -77,26 +78,42 @@
         </ListView>
         <Grid Grid.Row="1"
               Grid.Column="1"
-              Margin="10,0,0,0">
+              Margin="10,0,0,0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" MinWidth="56" />
+                <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="1"
+           <Button x:Name="DeleteSelectedItem"  Grid.Column="0" Grid.Row="1" Visibility="Visible" Height="33" Width="40"  Click="DeleteSelectedItem_Click">
+                <SymbolIcon Symbol="Delete"/>
+              <!--  <Button.Flyout>
+                    <Flyout>
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Contact will be removed.n Do you want to continue?" Margin="0,0,0,12" />
+                            <Button  Content="Yes"  Click="Button_Click" Width="50"/>
+                        </StackPanel>
+                    </Flyout>
+
+                </Button.Flyout>-->
+            </Button>
+            
+            <StackPanel Grid.Row="2" Grid.Column="1"
                         HorizontalAlignment="Center"
-                        Margin="0,150,0,0">
+                        Margin="0,150,0,0" Width="439">
                 <TextBlock Name="UnselectedContact" Text="Select a Contact to display!" Visibility="Visible" Margin="0,0,0,10" FontSize="30" HorizontalAlignment="Center"/>
                 <PersonPicture x:Name="PersonPicture" Visibility="Visible" BorderBrush="CornflowerBlue"  DisplayName="{Binding SelectedItem.FullName, ElementName=ContactList}"/>
                 <TextBlock x:Name="SelectedContactName" FontWeight="ExtraBold" FontSize="75" HorizontalAlignment="Center" Foreground="CornflowerBlue">
                     <Run Text="{Binding SelectedItem.FirstName, ElementName=ContactList}"></Run>
                     <Run Text="{Binding SelectedItem.LastName, ElementName=ContactList}"></Run>
                 </TextBlock>
-                <TextBlock x:Name="SelectedContactPhoneNo" Text="{Binding SelectedItem.PhoneNo, ElementName=ContactList}" FontWeight="Bold" FontSize="45" HorizontalAlignment="Center" />
-                <TextBlock x:Name="SelectedContactEmail" Text="{Binding SelectedItem.EmailID, ElementName=ContactList}" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
+                
+                <TextBlock x:Name="SelectedContactPhoneNo" Text="{Binding SelectedItem.PhoneNo, ElementName=ContactList}"  FontWeight="Bold" FontSize="45" HorizontalAlignment="Center" />
+                <TextBlock x:Name="SelectedContactEmail" Text="{Binding SelectedItem.EmailID, ElementName=ContactList}"  FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
                 <TextBlock x:Name="SelectedContactAddress" Text="{Binding SelectedItem.Address, ElementName=ContactList}" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center"/>
                 <TextBlock x:Name="SelectedContactFullName" Text="{Binding SelectedItem.FullName, ElementName=ContactList}" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center"/>
             </StackPanel>
@@ -106,15 +123,15 @@
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="28"
                     Grid.Row="0"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Height="50"
                     Width="50"
                     Click="AddButton_Click"
                     Background="CornflowerBlue"
                     Foreground="White"
-                    Margin="0,15,15,0"/>
+                    Margin="0,15,15,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         </Grid>
-        
+
         <!--<SplitView Grid.Row="1"
                    Name="ContactsSplitview"
                    DisplayMode="CompactInline"
@@ -152,7 +169,7 @@
             </SplitView.Pane>
             
         </SplitView> -->
-        <TimePicker Margin="1258,-103,0,0" VerticalAlignment="Top"/>
+        <TimePicker Margin="408,-103,0,0" VerticalAlignment="Top" Grid.Column="2"/>
     </Grid>
 
 </Page>
