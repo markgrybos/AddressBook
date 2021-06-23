@@ -50,6 +50,7 @@
                   BorderThickness="1"
                   Margin="5,5,0,5"
                   BorderBrush="White"
+                  SelectionChanged="ContactList_SelectionChanged"
                   ItemClick="ContactList_ItemClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
