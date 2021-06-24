@@ -49,7 +49,7 @@ namespace AddressBook
         {
             if (String.IsNullOrEmpty(NewFirstName.Text))
             {
-                var dialog = new MessageDialog("Please enter first name");
+                var dialog = new MessageDialog("Please enter first name!");
                 await dialog.ShowAsync();
 
 

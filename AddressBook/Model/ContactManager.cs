@@ -71,6 +71,33 @@ namespace AddressBook.Model
             return (Contact)lookForContact;
 
         }
+        public static void DeleteContact(string fullname)
+        {
+            XmlDocument doc = new XmlDocument();
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
+            doc.Load(path);
+            //var root = doc.SelectNodes("//ArrayOfContact//Contact[@FirstName='Moha']");
+            //  Console.WriteLine("Hello");
+
+            // var targetNode = root.SelectSingleNode("//Contact[FullName='Moha Zain']");
+            try
+            {
+                foreach (XmlNode xNode in doc.SelectNodes("ArrayOfContact / Contact"))
+                    if (xNode.SelectSingleNode("FullName").InnerText == fullname)
+                    {
+                        xNode.ParentNode.RemoveChild(xNode);
+                    }
+                doc.Save(path);
+                
+            }
+            catch(NullReferenceException e)
+            {
+                Console.WriteLine("Exception thrown {0} ",e);
+            }
+            
+        }
+
+    
 
 
     }
