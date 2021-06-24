@@ -47,9 +47,9 @@ namespace AddressBook
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
 
         {
-            if (String.IsNullOrEmpty(NewFirstName.Text))
+            if (String.IsNullOrEmpty(NewFirstName.Text)|| String.IsNullOrEmpty(NewLastName.Text))
             {
-                var dialog = new MessageDialog("Please enter first name!");
+                var dialog = new MessageDialog("Please enter First Name and Last Name ");
                 await dialog.ShowAsync();
 
 

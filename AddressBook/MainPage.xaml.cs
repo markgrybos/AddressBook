@@ -28,7 +28,7 @@ namespace AddressBook
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Contact> allcontacts;
-        
+        Contact selected;
         public MainPage()
 
         {
@@ -46,7 +46,7 @@ namespace AddressBook
             allcontacts.OrderBy(x => x.LastName);
             DataContext = allcontacts;
             this.InitializeComponent();
-
+            EditButton.Visibility = Visibility.Collapsed;
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -57,7 +57,7 @@ namespace AddressBook
         {
             DeleteSelectedItem.Visibility = Visibility.Visible;
             var contact = (Contact)e.ClickedItem;
-            Contact selected= ContactManager.GetContact(contact);
+            selected= ContactManager.GetContact(contact);
             UnselectedContact.Visibility = Visibility.Collapsed;
             SelectedContactName.Visibility = Visibility.Visible;
             SelectedContactPhoneNo.Visibility = Visibility.Visible;
@@ -66,6 +66,7 @@ namespace AddressBook
             SelectedContactFullName.Visibility = Visibility.Visible;
             PersonPicture.Visibility = Visibility.Visible;
 
+            EditButton.Visibility = Visibility.Visible;
 
             /*else if(SelectedContactName.Visibility != Visibility.Visible)
             {
@@ -83,6 +84,14 @@ namespace AddressBook
                 
                 UnselectedContact.Visibility = Visibility.Visible;
             }
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            this.Frame.Navigate(typeof(EditContact),selected);
+            
         }
 
         private void DeleteSelectedItem_Click(object sender, RoutedEventArgs e)
