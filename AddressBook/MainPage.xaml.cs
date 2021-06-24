@@ -28,6 +28,7 @@ namespace AddressBook
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Contact> allcontacts;
+        
         public MainPage()
 
         {
@@ -48,14 +49,27 @@ namespace AddressBook
 
         private void ContactList_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
             var contact = (Contact)e.ClickedItem;
-            var selected = ContactManager.GetContact(contact);
-            if (SelectedContactName.Visibility == Visibility.Visible)
+            Contact selected= ContactManager.GetContact(contact);
+            UnselectedContact.Visibility = Visibility.Collapsed;
+            SelectedContactName.Visibility = Visibility.Visible;
+
+
+            /*else if(SelectedContactName.Visibility != Visibility.Visible)
             {
-                UnselectedContact.Visibility = Visibility.Collapsed;
-            }
-            else if (SelectedContactName.Visibility != Visibility.Visible)
+                UnselectedContact.Visibility = Visibility.Visible;
+            }*/
+
+        }
+
+        private void ContactList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (ContactList.SelectedIndex == -1)
             {
+                SelectedContactName.Visibility = Visibility.Collapsed;
+                
                 UnselectedContact.Visibility = Visibility.Visible;
             }
         }
