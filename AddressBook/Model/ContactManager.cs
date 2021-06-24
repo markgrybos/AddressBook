@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using Windows.UI.Popups;
 
 namespace AddressBook.Model
 {
@@ -73,6 +74,9 @@ namespace AddressBook.Model
         }
         public static void DeleteContact(string fullname)
         {
+           
+          
+
             XmlDocument doc = new XmlDocument();
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
             doc.Load(path);
