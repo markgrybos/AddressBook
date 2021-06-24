@@ -52,7 +52,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="52" Width="360">
             <Button x:Name="CancelButton"  Content="CANCEL" Width="100"  Margin="10" Click="CancelButton_Click">
             </Button>
-            <Button x:Name="SaveButton"  Content="SAVE" Width="100"  Margin="10" Click="SaveButton_Click" />
+            <Button x:Name="UpdateButton"  Content="UPDATE" Width="100"  Margin="10" Click="SaveButton_Click" />
             
 
 

@@ -89,7 +89,7 @@ namespace AddressBook.Model
                 foreach (XmlNode xNode in doc.SelectNodes("ArrayOfContact / Contact"))
                     if (xNode.SelectSingleNode("FullName").InnerText == fullname)
                     {
-                        xNode.ParentNode.RemoveChild(xNode);
+                        xNode.ParentNode.RemoveChild(xNode);                        
                     }
                 doc.Save(path);
                 
@@ -100,8 +100,12 @@ namespace AddressBook.Model
             }
             
         }
+        public static void EditContact(string fullname)
+        {
+            
+        }
 
-    
+
 
 
     }
