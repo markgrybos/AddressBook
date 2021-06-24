@@ -28,7 +28,7 @@ namespace AddressBook
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Contact> allcontacts;
-        
+        Contact selected;
         public MainPage()
 
         {
@@ -57,7 +57,7 @@ namespace AddressBook
         {
             DeleteSelectedItem.Visibility = Visibility.Visible;
             var contact = (Contact)e.ClickedItem;
-            Contact selected= ContactManager.GetContact(contact);
+            selected= ContactManager.GetContact(contact);
             UnselectedContact.Visibility = Visibility.Collapsed;
             SelectedContactName.Visibility = Visibility.Visible;
             SelectedContactPhoneNo.Visibility = Visibility.Visible;
@@ -88,7 +88,10 @@ namespace AddressBook
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            
 
+            this.Frame.Navigate(typeof(EditContact),selected);
+            
         }
 
         private void DeleteSelectedItem_Click(object sender, RoutedEventArgs e)
