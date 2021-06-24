@@ -32,16 +32,22 @@ namespace AddressBook
         public MainPage()
 
         {
-          
+            OnLoad();
 
+            
+            this.InitializeComponent();
+
+        }
+        private void OnLoad()
+        {
             allcontacts = new ObservableCollection<Contact>();
-            allcontacts.OrderBy(x => x.LastName);
+
             ContactManager.ReadAllContacts(allcontacts);
+            allcontacts.OrderBy(x => x.LastName);
             DataContext = allcontacts;
             this.InitializeComponent();
 
         }
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AddNewContact));
@@ -49,11 +55,16 @@ namespace AddressBook
 
         private void ContactList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            DeleteSelectedItem.Visibility = Visibility.Visible;
             var contact = (Contact)e.ClickedItem;
             Contact selected= ContactManager.GetContact(contact);
             UnselectedContact.Visibility = Visibility.Collapsed;
             SelectedContactName.Visibility = Visibility.Visible;
+            SelectedContactPhoneNo.Visibility = Visibility.Visible;
+            SelectedContactEmail.Visibility = Visibility.Visible;
+            SelectedContactAddress.Visibility = Visibility.Visible;
+            SelectedContactFullName.Visibility = Visibility.Visible;
+            PersonPicture.Visibility = Visibility.Visible;
 
 
             /*else if(SelectedContactName.Visibility != Visibility.Visible)
@@ -79,9 +90,25 @@ namespace AddressBook
             //  var dialog = new MessageDialog("Do you want to delete");
             // await dialog.ShowAsync();
             var firstname = SelectedContactName.Text;
+            
+            
             ContactManager.DeleteContact(firstname);
-            this.InitializeComponent();
+            SelectedContactName.Visibility = Visibility.Collapsed;
+
             // var lastname = SelectedContactName.;
+
+
+            UnselectedContact.Visibility = Visibility.Visible;
+            SelectedContactPhoneNo.Visibility = Visibility.Collapsed;
+            SelectedContactEmail.Visibility = Visibility.Collapsed;
+            SelectedContactAddress.Visibility = Visibility.Collapsed;
+            SelectedContactFullName.Visibility = Visibility.Collapsed;
+            PersonPicture.Visibility = Visibility.Collapsed;
+            DeleteSelectedItem.Visibility = Visibility.Collapsed;
+            //allcontacts.Clear();
+            OnLoad();
+
+
 
 
 
