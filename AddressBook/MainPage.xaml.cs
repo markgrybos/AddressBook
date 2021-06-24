@@ -35,7 +35,7 @@ namespace AddressBook
             ContactManager.ReadAllContacts(allcontacts);
             DataContext = allcontacts;
             this.InitializeComponent();
-
+            EditButton.Visibility = Visibility.Collapsed;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace AddressBook
             Contact selected= ContactManager.GetContact(contact);
             UnselectedContact.Visibility = Visibility.Collapsed;
             SelectedContactName.Visibility = Visibility.Visible;
-
+            EditButton.Visibility = Visibility.Visible;
 
             /*else if(SelectedContactName.Visibility != Visibility.Visible)
             {
@@ -68,6 +68,11 @@ namespace AddressBook
                 
                 UnselectedContact.Visibility = Visibility.Visible;
             }
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
