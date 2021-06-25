@@ -55,17 +55,17 @@ namespace AddressBook
 
         private void ContactList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            DeleteSelectedItem.Visibility = Visibility.Visible;
             var contact = (Contact)e.ClickedItem;
-            selected= ContactManager.GetContact(contact);
+            selected = ContactManager.GetContact(contact);
+            DeleteSelectedItem.Visibility = Visibility.Visible;
             UnselectedContact.Visibility = Visibility.Collapsed;
             SelectedContactName.Visibility = Visibility.Visible;
             SelectedContactPhoneNo.Visibility = Visibility.Visible;
             SelectedContactEmail.Visibility = Visibility.Visible;
             SelectedContactAddress.Visibility = Visibility.Visible;
-            SelectedContactFullName.Visibility = Visibility.Visible;
+            //SelectedContactFullName.Visibility = Visibility.Visible;
             PersonPicture.Visibility = Visibility.Visible;
-
+            
             EditButton.Visibility = Visibility.Visible;
 
             /*else if(SelectedContactName.Visibility != Visibility.Visible)
@@ -81,7 +81,7 @@ namespace AddressBook
             if (ContactList.SelectedIndex == -1)
             {
                 SelectedContactName.Visibility = Visibility.Collapsed;
-                
+                DeleteSelectedItem.Visibility = Visibility.Collapsed;
                 UnselectedContact.Visibility = Visibility.Visible;
             }
         }
@@ -94,15 +94,15 @@ namespace AddressBook
             
         }
 
-        private void DeleteSelectedItem_Click(object sender, RoutedEventArgs e)
+        /*private void DeleteSelectedItem_Click(object sender, RoutedEventArgs e)
         {
             //  var dialog = new MessageDialog("Do you want to delete");
             // await dialog.ShowAsync();
-            var firstname = SelectedContactName.Text;
+            ListView lv = sender as ListView;
+            var contact = e.ClickedItem as Contact;
+            ContactManager.DeleteContact(selected, allcontacts);
             
-            
-            ContactManager.DeleteContact(firstname);
-            SelectedContactName.Visibility = Visibility.Collapsed;
+            //SelectedContactName.Visibility = Visibility.Collapsed;
 
             // var lastname = SelectedContactName.;
 
@@ -111,24 +111,18 @@ namespace AddressBook
             SelectedContactPhoneNo.Visibility = Visibility.Collapsed;
             SelectedContactEmail.Visibility = Visibility.Collapsed;
             SelectedContactAddress.Visibility = Visibility.Collapsed;
-            SelectedContactFullName.Visibility = Visibility.Collapsed;
+            //SelectedContactFullName.Visibility = Visibility.Collapsed;
             PersonPicture.Visibility = Visibility.Collapsed;
             DeleteSelectedItem.Visibility = Visibility.Collapsed;
             //allcontacts.Clear();
             OnLoad();
+        }*/
 
-
-
-
-
-
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            var selected = ContactList.SelectedItem;
+            ContactManager.DeleteContact((Contact)selected, allcontacts);
             
-
         }
     }
 }
