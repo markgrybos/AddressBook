@@ -13,6 +13,7 @@ namespace AddressBook.Model
 {
     public static class ContactManager
     {
+
         public static void AddContact(List<Contact> contact, XmlSerializer xml, Contact contactToAdd)
         {
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
@@ -67,17 +68,46 @@ namespace AddressBook.Model
             contactlist = (List<Contact>)xml.Deserialize(contactFile);
             contactFile.Close();
 
-            var lookForContact = contactlist.First(f => f.FirstName == selectedContact.FirstName && f.LastName == selectedContact.LastName);
+            Contact lookForContact = contactlist.First(f => f.FirstName == selectedContact.FirstName && f.LastName == selectedContact.LastName);
 
             return (Contact)lookForContact;
 
         }
-        public static void DeleteContact(string fullname)
-        {
-           
-          
 
-            XmlDocument doc = new XmlDocument();
+        public static List<Contact> GetContactList()
+        {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
+            FileStream contactFile;
+            XmlSerializer xml = new XmlSerializer(typeof(List<Contact>));
+            List<Contact> contactlist = new List<Contact>();
+            contactFile = new FileStream(path, FileMode.Open, FileAccess.Read);
+            contactlist = (List<Contact>)xml.Deserialize(contactFile);
+            contactFile.Close();
+
+            return contactlist;
+        }
+        public static void DeleteContact(Contact selectedContact, ObservableCollection<Contact> allcontacts)
+        {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
+            FileStream getContactListFromXML = new FileStream(path, FileMode.Open, FileAccess.Read);
+            XmlSerializer xml = new XmlSerializer(typeof(List<Contact>));
+            List<Contact> ContactList = new List<Contact>();
+            ContactList = (List<Contact>)xml.Deserialize(getContactListFromXML);
+            getContactListFromXML.Close();
+            allcontacts.Clear();
+
+            Contact ContactToDelete = ContactList.First(f => f.FirstName == selectedContact.FirstName && f.LastName == selectedContact.LastName);
+            ContactList.Remove(ContactToDelete);
+            getContactListFromXML = new FileStream(path, FileMode.Create, FileAccess.Write);
+            xml.Serialize(getContactListFromXML, ContactList);
+            getContactListFromXML.Close();
+            ContactList.ForEach(contact => allcontacts.Add(contact));
+            
+
+
+
+
+            /*XmlDocument doc = new XmlDocument();
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
             doc.Load(path);
             //var root = doc.SelectNodes("//ArrayOfContact//Contact[@FirstName='Moha']");
@@ -97,8 +127,8 @@ namespace AddressBook.Model
             catch(NullReferenceException e)
             {
                 Console.WriteLine("Exception thrown {0} ",e);
-            }
-            
+            }*/
+
         }
         public static void EditContact(string fullname)
         {
