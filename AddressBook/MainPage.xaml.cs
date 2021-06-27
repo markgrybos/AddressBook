@@ -140,7 +140,13 @@ namespace AddressBook
             var selected = ContactList.SelectedItem;
             ContactManager.DeleteContact((Contact)selected, allcontacts);
             EditButton.Visibility = Visibility.Collapsed;
+            DeleteFlyout.Hide();
             
+        }
+
+        public void SetSelectNavigationItem(Contact selected)
+        {
+            ContactList.SelectedItem = ContactManager.GetContact(selected);
         }
     }
 }

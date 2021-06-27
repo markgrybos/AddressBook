@@ -38,7 +38,8 @@
                   Margin="5,5,0,5"
                   BorderBrush="White"
                   SelectionChanged="ContactList_SelectionChanged"
-                  ItemClick="ContactList_ItemClick">
+                  ItemClick="ContactList_ItemClick"
+                  CornerRadius="10">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Contact">
                     <Grid>
@@ -89,10 +90,10 @@
             </Grid.ColumnDefinitions>
 
 
-            <StackPanel Grid.Row="2" Grid.Column="1"
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="3"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Margin="0,0,0,150" Width="750">
+                        Margin="0,0,0,150" Width="950">
                 <TextBlock Name="UnselectedContact" Text="Select a Contact to display!" Visibility="Visible" Margin="0,0,0,10" FontSize="30" HorizontalAlignment="Center"/>
                 <Grid>
                     <Grid HorizontalAlignment="Center"
@@ -101,14 +102,14 @@
                         <PersonPicture x:Name="PersonPicture" Visibility="Visible" BorderBrush="CornflowerBlue"  DisplayName="{Binding SelectedItem.FullName, ElementName=ContactList}" Background="CornflowerBlue"/>
                     </Grid>
                 </Grid>
-                <TextBlock x:Name="SelectedContactName" FontWeight="ExtraBold" FontSize="75" HorizontalAlignment="Center" Foreground="CornflowerBlue">
+                <TextBlock x:Name="SelectedContactName" FontWeight="ExtraBold" FontSize="60" HorizontalAlignment="Center" Foreground="CornflowerBlue">
                     <Run Text="{Binding SelectedItem.FirstName, ElementName=ContactList}"></Run>
                     <Run Text="{Binding SelectedItem.LastName, ElementName=ContactList}"></Run>
                 </TextBlock>
 
-                <TextBlock x:Name="SelectedContactPhoneNo" Text="{Binding SelectedItem.PhoneNo, ElementName=ContactList}"  FontWeight="Bold" FontSize="45" HorizontalAlignment="Center" />
-                <TextBlock x:Name="SelectedContactEmail" Text="{Binding SelectedItem.EmailID, ElementName=ContactList}"  FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="SelectedContactAddress" Text="{Binding SelectedItem.Address, ElementName=ContactList}" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="SelectedContactPhoneNo" Text="{Binding SelectedItem.PhoneNo, ElementName=ContactList}"  FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" />
+                <TextBlock x:Name="SelectedContactEmail" Text="{Binding SelectedItem.EmailID, ElementName=ContactList}"  FontWeight="Bold" FontSize="25" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="SelectedContactAddress" Text="{Binding SelectedItem.Address, ElementName=ContactList}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"/>
             </StackPanel>
             
             <Button Name="AddButton"
@@ -122,7 +123,10 @@
                     Click="AddButton_Click"
                     Background="CornflowerBlue"
                     Foreground="White"
-                    Margin="0,15,15,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                    Margin="0,15,15,0" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Top"
+                    CornerRadius="15"/>
             <Button Name="EditButton"
                     HorizontalAlignment="Right"
                     Content="&#xE70F;"
@@ -135,19 +139,31 @@
                     Background="CornflowerBlue"
                     Foreground="White"
                     Visibility="Collapsed"
-                    Margin="0,15,15,0" VerticalAlignment="Stretch"/>
+                    Margin="0,15,15,0" 
+                    VerticalAlignment="Stretch"
+                    CornerRadius="15"/>
             <Button x:Name="DeleteSelectedItem" 
                     Visibility="Collapsed"  
                     Grid.Column="0" 
                     Grid.Row="1"  
                     Height="50" 
-                    Width="50"  
-                    Click="DeleteButton_Click"
+                    Width="50"
+                    Margin="0,5,0,0"
                     FontFamily="Segoe MDL2 Assets"
                     Content="&#xE74D;"
                     Background="Red"
                     Foreground="White"
-                    FontSize="28"/>
+                    FontSize="28"
+                    CornerRadius="15">
+                <Button.Flyout>
+                    <Flyout x:Name="DeleteFlyout">
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="This Contact will be deleted. Are you sure?" Margin="0,0,0,12"/>
+                            <Button Click="DeleteButton_Click" Content="Confirm" CornerRadius="8" Background="Red" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
         </Grid>
 
 
