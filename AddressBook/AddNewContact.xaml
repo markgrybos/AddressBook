@@ -8,36 +8,36 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="CornflowerBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height = "2*"/>
-            <RowDefinition Height = "4*"/>
+            <RowDefinition Height="150" />
+            <RowDefinition Height = "150"/>
+            <RowDefinition Height = "Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="MyStackPanel" Orientation="Vertical"  Margin="10,4,20,56" Grid.ColumnSpan="2" Grid.Row="1">
-            <TextBox x:Name="NewFirstName" Height="35"  PlaceholderText="First Name" Width="515" ></TextBox>
-            <TextBox x:Name="NewLastName" Height="35"  PlaceholderText="Last Name" Width="515" ></TextBox>
+        <TextBlock Text="Add a Contact" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" FontWeight="SemiBold" Foreground="White"/>
+        <StackPanel x:Name="MyStackPanel" Orientation="Vertical"  Margin="20,4,20,56" Grid.ColumnSpan="2" Grid.Row="2" MaxWidth="650" VerticalAlignment="Center" Background="White">
+            <TextBox x:Name="NewFirstName" Height="35"  PlaceholderText="*First Name" Width="515" Margin="0,40,0,0" FontWeight="SemiBold"></TextBox>
+            <TextBox x:Name="NewLastName" Height="35"  PlaceholderText="*Last Name" Width="515" FontWeight="SemiBold"></TextBox>
             <TextBox x:Name="NewPhoneNumber" PlaceholderText="Phone Number" Width="515"></TextBox>
             <TextBox x:Name="NewEmailId" PlaceholderText="Email ID"  Width="515"></TextBox>
             <TextBox x:Name="NewAddress" PlaceholderText="Address" Width="515"></TextBox>
+            <TextBlock Text="* Are required fields" Width="515" Foreground="DarkRed"/>
 
-            <Grid  Width="514" ColumnSpacing="80"  >
+            <!--<Grid  Width="514" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="25" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-
-                <Button x:Name="CancelButton"  Content="CANCEL" Width="100" Click="CancelButton_Click" HorizontalAlignment="Center" Grid.Row="1" >
-                </Button>
-                <Button x:Name="SaveButton"  Content="SAVE" Width="100" Click="SaveButton_Click" Grid.Row="1"  Grid.Column="1" />
-                <Button x:Name="ClearButton"  Content="CLEAR" Width="100" Click="ClearButton_Click" Grid.Row="1"  Grid.Column="2">                   
-
-                </Button>
-            </Grid>
+            </Grid>-->
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,20">
+                <Button x:Name="CancelButton" Content="CANCEL" Width="100" Click="CancelButton_Click" HorizontalAlignment="Center" Margin="10" Background="White" Foreground="CornflowerBlue" FontWeight="Bold" BorderBrush="CornflowerBlue"/>
+                <Button x:Name="SaveButton"  Content="SAVE" Width="100" Click="SaveButton_Click" HorizontalAlignment="Center" Margin="10" Background="White" Foreground="CornflowerBlue" FontWeight="Bold" BorderBrush="CornflowerBlue"/>
+                <Button x:Name="ClearButton"  Content="CLEAR" Width="100" Click="ClearButton_Click" HorizontalAlignment="Center" Margin="10" Background="White" Foreground="CornflowerBlue" FontWeight="Bold" BorderBrush="CornflowerBlue"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

@@ -83,7 +83,6 @@ namespace AddressBook
             SelectedContactAddress.Visibility = Visibility.Visible;
             //SelectedContactFullName.Visibility = Visibility.Visible;
             PersonPicture.Visibility = Visibility.Visible;
-            
             EditButton.Visibility = Visibility.Visible;
 
             /*else if(SelectedContactName.Visibility != Visibility.Visible)
@@ -95,12 +94,12 @@ namespace AddressBook
 
         private void ContactList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             if (ContactList.SelectedIndex == -1)
             {
                 SelectedContactName.Visibility = Visibility.Collapsed;
                 DeleteSelectedItem.Visibility = Visibility.Collapsed;
                 UnselectedContact.Visibility = Visibility.Visible;
+                EditButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -141,7 +140,13 @@ namespace AddressBook
             var selected = ContactList.SelectedItem;
             ContactManager.DeleteContact((Contact)selected, allcontacts);
             EditButton.Visibility = Visibility.Collapsed;
+            DeleteFlyout.Hide();
             
+        }
+
+        public void SetSelectNavigationItem(Contact selected)
+        {
+            ContactList.SelectedItem = ContactManager.GetContact(selected);
         }
     }
 }

@@ -149,6 +149,7 @@ namespace AddressBook.Model
             ContactList[i].PhoneNo = updatedContact.PhoneNo;
             ContactList[i].EmailID = updatedContact.EmailID;
             ContactList[i].Address = updatedContact.Address;
+            ContactList[i].FullName = $"{updatedContact.FirstName} {updatedContact.LastName}";
             getContactListFromXML = new FileStream(path, FileMode.Create, FileAccess.Write);
             xml.Serialize(getContactListFromXML, ContactList);
             getContactListFromXML.Close();
