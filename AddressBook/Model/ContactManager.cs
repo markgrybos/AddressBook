@@ -130,9 +130,30 @@ namespace AddressBook.Model
             }*/
 
         }
-        public static void EditContact(string fullname)
+        public static void EditContact(Contact selectedContact,Contact updatedContact)
         {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "contacts.xml");
+            FileStream getContactListFromXML = new FileStream(path, FileMode.Open, FileAccess.Read);
+            XmlSerializer xml = new XmlSerializer(typeof(List<Contact>));
+            List<Contact> ContactList = new List<Contact>();
+            ContactList = (List<Contact>)xml.Deserialize(getContactListFromXML);
+            getContactListFromXML.Close();
+
+            //int i = ContactList.IndexOf(editContact);
             
+            getContactListFromXML.Close();
+            int i = ContactList.FindIndex(f => f.FirstName == selectedContact.FirstName && f.LastName == selectedContact.LastName);
+            //(f => f.FirstName == selectedContact.FirstName && f.LastName == selectedContact.LastName);
+            ContactList[i].FirstName = updatedContact.FirstName;
+            ContactList[i].LastName = updatedContact.LastName;
+            ContactList[i].PhoneNo = updatedContact.PhoneNo;
+            ContactList[i].EmailID = updatedContact.EmailID;
+            ContactList[i].Address = updatedContact.Address;
+            getContactListFromXML = new FileStream(path, FileMode.Create, FileAccess.Write);
+            xml.Serialize(getContactListFromXML, ContactList);
+            getContactListFromXML.Close();
+
+
         }
 
 

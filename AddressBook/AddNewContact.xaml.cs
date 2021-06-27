@@ -75,6 +75,7 @@ namespace AddressBook
                 NewAddress.Text = String.Empty;
                 var dialog = new MessageDialog("Contact added successfully.");
                 await dialog.ShowAsync();
+                this.Frame.Navigate(typeof(MainPage));
 
                 //var newcontact = new Contact(NewName.ToString(), NewPhoneNumber.ToString(), NewEmailId.ToString(),NewAddress.ToString());
 

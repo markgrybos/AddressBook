@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +24,7 @@ namespace AddressBook
     /// </summary>
     public sealed partial class EditContact : Page
     {
+        Contact selectedcontact;
         public EditContact()
         {
             this.InitializeComponent();
@@ -31,7 +33,7 @@ namespace AddressBook
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var selectedcontact = (Contact)e.Parameter;
+            selectedcontact = (Contact)e.Parameter;
             EditFirstName.Text = selectedcontact.FirstName;
             EditLastName.Text = selectedcontact.LastName;
             EditPhoneNumber.Text = selectedcontact.PhoneNo;
@@ -44,8 +46,18 @@ namespace AddressBook
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            Contact UpdatedContact = new Contact();
+            UpdatedContact.FirstName = EditFirstName.Text;
+            UpdatedContact.LastName = EditLastName.Text;
+            UpdatedContact.PhoneNo = EditPhoneNumber.Text;
+            UpdatedContact.EmailID = EditEmailId.Text;
+            UpdatedContact.Address = EditAddress.Text;
+            ContactManager.EditContact(selectedcontact,UpdatedContact);
+            var dialog = new MessageDialog("Contact updated successfully.");
+            await dialog.ShowAsync();
+            this.Frame.Navigate(typeof(MainPage));
 
         }
     }
