@@ -38,6 +38,24 @@ namespace AddressBook
             this.InitializeComponent();
 
         }
+        /*protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Contact selectedcontact = (Contact)e.Parameter;
+            selected = ContactManager.GetContact(selectedcontact);
+            DeleteSelectedItem.Visibility = Visibility.Visible;
+            UnselectedContact.Visibility = Visibility.Collapsed;
+            SelectedContactName.Visibility = Visibility.Visible;
+            SelectedContactPhoneNo.Visibility = Visibility.Visible;
+            SelectedContactEmail.Visibility = Visibility.Visible;
+            SelectedContactAddress.Visibility = Visibility.Visible;
+           
+            PersonPicture.Visibility = Visibility.Visible;
+
+            EditButton.Visibility = Visibility.Visible;
+
+        }*/
+
         private void OnLoad()
         {
             allcontacts = new ObservableCollection<Contact>();
@@ -121,6 +139,7 @@ namespace AddressBook
         {
             var selected = ContactList.SelectedItem;
             ContactManager.DeleteContact((Contact)selected, allcontacts);
+            EditButton.Visibility = Visibility.Collapsed;
             
         }
     }
